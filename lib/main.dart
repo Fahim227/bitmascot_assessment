@@ -1,6 +1,8 @@
 import 'package:bitmascot_assessment/core/models/flavor_config.dart';
 import 'package:bitmascot_assessment/features/login/presentation/bloc/login_cubit.dart';
 import 'package:bitmascot_assessment/features/login/presentation/pages/login_page.dart';
+import 'package:bitmascot_assessment/features/movies/presentation/bloc/all_movies_cubit.dart';
+import 'package:bitmascot_assessment/features/movies/presentation/pages/all_movies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,6 +40,10 @@ class MyApp extends StatelessWidget {
           '/': (context) => BlocProvider(
             create: (context) => sl.get<LoginCubit>(),
             child: const LoginPage(),
+          ),
+          '/all_movies': (context) => BlocProvider(
+            create: (context) => sl.get<AllMoviesCubit>()..getAllMovies(),
+            child: const AllMovies(),
           ),
         },
       ),

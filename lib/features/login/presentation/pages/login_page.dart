@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                 context,
               ).showSnackBar(SnackBar(content: Text(state.message)));
             } else if (state is LoginSuccessState) {
-              // TODO: Navigate to list page
+              Navigator.pushNamed(context, "/all_movies");
             }
           },
           child: Column(

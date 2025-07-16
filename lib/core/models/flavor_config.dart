@@ -8,10 +8,7 @@ class FlavorConfig {
 
   FlavorConfig._(this.flavor, this.baseUrl);
 
-  static void initialize({
-    required Flavor flavor,
-    required String baseUrl,
-  }) {
+  static void initialize({required Flavor flavor, required String baseUrl}) {
     instance = FlavorConfig._(flavor, baseUrl);
   }
 

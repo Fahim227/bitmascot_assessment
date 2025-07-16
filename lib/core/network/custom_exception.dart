@@ -56,7 +56,8 @@ class CustomException implements Exception {
         return CustomException(message: "Internal server error");
       default:
         return CustomException(
-            message: "Received invalid status code: $statusCode");
+          message: "Received invalid status code: $statusCode",
+        );
     }
   }
 
@@ -67,7 +68,8 @@ class CustomException implements Exception {
       return CustomException(message: e.message);
     } else if (e is TypeError) {
       return CustomException(
-          message: "Type error: Possible type mismatch or missing adapter");
+        message: "Type error: Possible type mismatch or missing adapter",
+      );
     } else {
       return CustomException(message: e.toString());
     }
