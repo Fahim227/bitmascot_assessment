@@ -3,7 +3,7 @@ import 'package:bitmascot_assessment/features/movies/data/model/movie_model.dart
 import 'package:bitmascot_assessment/features/movies/domain/entity/movie_entity.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: Mapper<MovieModel, MovieEntity>)
+@Injectable(as: Mapper<List<MovieModel>, List<MovieEntity>>)
 class MovieModelToEntity
     implements Mapper<List<MovieModel>, List<MovieEntity>> {
   @override

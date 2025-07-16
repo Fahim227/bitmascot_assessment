@@ -1,4 +1,7 @@
 import 'package:bitmascot_assessment/core/models/flavor_config.dart';
+import 'package:bitmascot_assessment/features/favorite_movies/data/model/movie_local_model.dart';
+import 'package:bitmascot_assessment/features/favorite_movies/presentation/bloc/favorite_movie_cubit.dart';
+import 'package:bitmascot_assessment/features/favorite_movies/presentation/pages/favorite_movies.dart';
 import 'package:bitmascot_assessment/features/login/presentation/bloc/login_cubit.dart';
 import 'package:bitmascot_assessment/features/login/presentation/pages/login_page.dart';
 import 'package:bitmascot_assessment/features/movie_details/presentation/bloc/movie_details_cubit.dart';
@@ -8,13 +11,17 @@ import 'package:bitmascot_assessment/features/movies/presentation/bloc/all_movie
 import 'package:bitmascot_assessment/features/movies/presentation/pages/all_movies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'core/di/di.dart';
 import 'core/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  final appDocDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocDir.path);
+  Hive.registerAdapter(MovieLocalModelAdapter());
   FlavorConfig.initialize(
     flavor: Flavor.dev,
     baseUrl: 'https://jsonplaceholder.typicode.com',
@@ -47,6 +54,11 @@ class MyApp extends StatelessWidget {
           '/all_movies': (context) => BlocProvider(
             create: (context) => sl.get<AllMoviesCubit>()..getAllMovies(),
             child: const AllMovies(),
+          ),
+          '/favorite_movies': (context) => BlocProvider(
+            create: (context) =>
+                sl.get<FavoriteMovieCubit>()..getAllFavoriteMovies(),
+            child: const FavoriteMovies(),
           ),
         },
         onGenerateRoute: (settings) {

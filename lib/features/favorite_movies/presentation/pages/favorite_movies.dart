@@ -1,10 +1,10 @@
-import 'package:bitmascot_assessment/features/movies/presentation/bloc/all_movies_cubit.dart';
+import 'package:bitmascot_assessment/features/favorite_movies/presentation/bloc/favorite_movie_cubit.dart';
 import 'package:bitmascot_assessment/features/movies/presentation/widget/movie_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AllMovies extends StatelessWidget {
-  const AllMovies({super.key});
+class FavoriteMovies extends StatelessWidget {
+  const FavoriteMovies({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,25 +12,19 @@ class AllMovies extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("All Movies"),
+        title: const Text("Favorite Movies"),
         backgroundColor: primaryColor,
-        actions: [
-          IconButton(
-            onPressed: () => Navigator.pushNamed(context, "/favorite_movies"),
-            icon: Icon(Icons.favorite, color: Colors.red),
-          ),
-        ],
       ),
-      body: BlocConsumer<AllMoviesCubit, AllMoviesState>(
+      body: BlocConsumer<FavoriteMovieCubit, FavoriteMovieState>(
         listener: (context, state) {},
         builder: (context, state) {
           switch (state) {
-            case AllMoviesLoadingState():
+            case FavoriteMovieLoadingState():
               return const Center(child: CircularProgressIndicator());
-            case AllMoviesErrorState():
+            case FavoriteMovieErrorState():
               return Center(child: Text('Error: ${state.errorMessage}'));
 
-            case AllMoviesLoadedState():
+            case FavoriteMovieLoadedState():
               final movies = state.allMovies;
 
               if (movies.isEmpty) {
@@ -40,7 +34,9 @@ class AllMovies extends StatelessWidget {
               return RefreshIndicator(
                 onRefresh: () async {
                   return Future.delayed(const Duration(seconds: 1)).then(
-                    (value) => context.read<AllMoviesCubit>().getAllMovies(),
+                    (value) => context
+                        .read<FavoriteMovieCubit>()
+                        .getAllFavoriteMovies(),
                   );
                 },
                 child: MovieList(movies: movies),
