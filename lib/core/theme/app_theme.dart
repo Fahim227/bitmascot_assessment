@@ -10,40 +10,26 @@ class AppTheme {
     primaryColor: Colors.deepPurple,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     inputDecorationTheme: InputDecorationTheme(
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 14,
-      ),
+      floatingLabelStyle: TextStyle(color: Colors.blueAccent),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(20.0),
-        borderSide: const BorderSide(
-          color: AppColors.borderColor,
-          width: 1.0,
-        ),
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: const BorderSide(color: AppColors.borderColor, width: 1.0),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(20.0),
-        borderSide: const BorderSide(
-          color: AppColors.borderColor,
-          width: 1.0,
-        ),
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: const BorderSide(color: AppColors.borderColor, width: 1.0),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(20.0),
-        borderSide: const BorderSide(
-          color: AppColors.borderColor,
-          width: 2.0,
-        ),
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: const BorderSide(color: AppColors.borderColor, width: 2.0),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30.0),
-        borderSide: const BorderSide(
-          color: Colors.red,
-          width: 1.0,
-        ),
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: const BorderSide(color: Colors.red, width: 1.0),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(8.0),
         borderSide: const BorderSide(width: 2, color: AppColors.borderColor),
       ),
     ),
@@ -55,11 +41,17 @@ class AppTheme {
       ),
     ),
     textTheme: const TextTheme(
-      bodyLarge: TextStyle(fontSize: 20.0, color: Colors.black),
-      bodyMedium: TextStyle(fontSize: 12.0, color: Colors.grey),
+      headlineLarge: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: Colors.grey,
+      ),
     ),
-    iconTheme: IconThemeData(
-      color: Colors.white,
-    ),
+    iconTheme: IconThemeData(color: Colors.white),
   );
 }

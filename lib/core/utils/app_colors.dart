@@ -1,7 +1,8 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class AppColors {
   AppColors._();
+
   static Color dividerColor = const Color(0xFFD9D9D9);
-  static const Color borderColor = Color(0xFFE1E1E0);
+  static const Color borderColor = Colors.blueAccent;
 }

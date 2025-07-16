@@ -32,8 +32,9 @@ class CommonButton extends StatelessWidget {
             elevation: 0.0,
             side: BorderSide(color: borderColor),
             //set border for the button
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
           onPressed: onTap,
           child: buttonContent,
