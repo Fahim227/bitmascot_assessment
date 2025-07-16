@@ -17,11 +17,11 @@ class MovieTile extends StatelessWidget {
           CachedNetworkImage(
             width: 60,
             height: 60,
-
             imageUrl: movie.thumbnailUrl,
             placeholder: (context, url) =>
                 Icon(Icons.image, size: 60, color: Colors.grey),
-            errorWidget: (context, url, error) => Icon(Icons.error),
+            errorWidget: (context, url, error) =>
+                Icon(Icons.image, size: 60, color: Colors.grey),
           ),
           SizedBox(width: 8),
           Expanded(

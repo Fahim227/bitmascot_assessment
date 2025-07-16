@@ -45,13 +45,11 @@ class AllMovies extends StatelessWidget {
 
                     return InkWell(
                       onTap: () {
-                        // Todo: got to movie details page
-
-                        // Navigator.pushNamed(
-                        //   context,
-                        //   '/details',
-                        //   arguments: movieEntity,
-                        // );
+                        Navigator.pushNamed(
+                          context,
+                          '/details',
+                          arguments: movieEntity,
+                        );
                       },
                       child: MovieTile(movie: movieEntity),
                     );

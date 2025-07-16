@@ -34,8 +34,10 @@ class AppTheme {
       ),
     ),
     appBarTheme: const AppBarTheme(
+      elevation: 0,
+      iconTheme: IconThemeData(color: Colors.white),
       titleTextStyle: TextStyle(
-        fontSize: 20.0,
+        fontSize: 16.0,
         fontWeight: FontWeight.bold,
         color: Colors.white,
       ),
@@ -49,6 +51,11 @@ class AppTheme {
       titleMedium: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
+        color: Colors.grey,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w700,
         color: Colors.grey,
       ),
     ),
