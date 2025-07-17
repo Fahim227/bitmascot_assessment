@@ -51,8 +51,9 @@ class CommonInputField extends StatelessWidget {
     final contentPadding = isMultiline
         ? const EdgeInsets.all(16)
         : const EdgeInsets.symmetric(horizontal: 16);
-    final InputDecorationTheme inputDecorationTheme =
-        Theme.of(context).inputDecorationTheme;
+    final InputDecorationTheme inputDecorationTheme = Theme.of(
+      context,
+    ).inputDecorationTheme;
     return TextFormField(
       readOnly: readOnly,
       enabled: enabled,
@@ -80,18 +81,17 @@ class CommonInputField extends StatelessWidget {
         suffixIcon: suffixIcon,
         focusColor: Colors.white,
         hintText: hintText,
-        hintStyle: const TextStyle(
-          fontSize: 14.0,
-          fontWeight: FontWeight.w400,
-        ),
+        hintStyle: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
         counterText: counterText,
         border: _border(context, inputDecorationTheme.border),
         enabledBorder: _border(context, inputDecorationTheme.enabledBorder),
         focusedBorder: _border(context, inputDecorationTheme.focusedBorder),
         disabledBorder: _border(context, inputDecorationTheme.disabledBorder),
         errorBorder: _border(context, inputDecorationTheme.errorBorder),
-        focusedErrorBorder:
-            _border(context, inputDecorationTheme.focusedErrorBorder),
+        focusedErrorBorder: _border(
+          context,
+          inputDecorationTheme.focusedErrorBorder,
+        ),
       ),
       maxLines: maxLines,
       minLines: minLines,
