@@ -17,15 +17,14 @@ import 'package:path_provider/path_provider.dart';
 import 'core/di/di.dart';
 import 'core/theme/app_theme.dart';
 
+const String apiUrl = String.fromEnvironment('API_URL');
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final appDocDir = await getApplicationDocumentsDirectory();
   Hive.init(appDocDir.path);
   Hive.registerAdapter(MovieLocalModelAdapter());
-  FlavorConfig.initialize(
-    flavor: Flavor.dev,
-    baseUrl: 'https://jsonplaceholder.typicode.com',
-  );
+  FlavorConfig.initialize(flavor: Flavor.dev, baseUrl: apiUrl);
   await configureDependencies();
 
   runApp(const MyApp());
