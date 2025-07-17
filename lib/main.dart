@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Bitmascot Assessment',
         theme: AppTheme.themeData,
-        initialRoute: '/all_movies',
+        initialRoute: '/',
         routes: {
           '/': (context) => BlocProvider(
             create: (context) => sl.get<LoginCubit>(),

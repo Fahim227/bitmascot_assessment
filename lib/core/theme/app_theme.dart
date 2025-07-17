@@ -49,14 +49,14 @@ class AppTheme {
         color: Colors.black,
       ),
       titleMedium: TextStyle(
-        fontSize: 16,
+        fontSize: 12,
         fontWeight: FontWeight.w500,
         color: Colors.grey,
       ),
       titleSmall: TextStyle(
-        fontSize: 12,
+        fontSize: 16,
         fontWeight: FontWeight.w700,
-        color: Colors.grey,
+        color: Colors.black,
       ),
     ),
     iconTheme: IconThemeData(color: Colors.white),
