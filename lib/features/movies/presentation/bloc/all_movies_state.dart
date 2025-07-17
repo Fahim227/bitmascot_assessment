@@ -12,6 +12,7 @@ final class AllMoviesErrorState extends AllMoviesState {
 
 final class AllMoviesLoadedState extends AllMoviesState {
   final List<MovieEntity> allMovies;
+  final bool hasMore;
 
-  AllMoviesLoadedState(this.allMovies);
+  AllMoviesLoadedState(this.allMovies, this.hasMore);
 }

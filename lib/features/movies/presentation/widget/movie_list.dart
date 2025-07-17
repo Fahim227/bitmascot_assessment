@@ -6,14 +6,29 @@ import 'movie_tile.dart';
 
 class MovieList extends StatelessWidget {
   final List<MovieEntity> movies;
+  final ScrollController? scrollController;
+  final bool hasMore;
 
-  const MovieList({super.key, required this.movies});
+  const MovieList({
+    super.key,
+    required this.movies,
+    this.hasMore = false,
+    this.scrollController,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemCount: movies.length,
+      controller: scrollController,
+      itemCount: hasMore ? movies.length + 1 : movies.length,
       itemBuilder: (context, index) {
+        if (index == movies.length) {
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: LinearProgressIndicator(minHeight: 8),
+          );
+        }
+
         final movieEntity = movies[index];
 
         return InkWell(

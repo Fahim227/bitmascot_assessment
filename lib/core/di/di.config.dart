@@ -96,11 +96,13 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i94.AddFavoriteMovie(gh<_i699.FavoriteMoviesRepository>()));
     gh.factory<_i588.AllFavoriteMovies>(
         () => _i588.AllFavoriteMovies(gh<_i699.FavoriteMoviesRepository>()));
+    gh.factory<_i1017.MovieDetailsCubit>(() => _i1017.MovieDetailsCubit(
+          gh<_i94.AddFavoriteMovie>(),
+          gh<_i588.AllFavoriteMovies>(),
+        ));
     gh.factory<_i59.LoginCubit>(() => _i59.LoginCubit(gh<_i85.LoginUseCase>()));
     gh.factory<_i453.MoviesDataSource>(
         () => _i26.PostsDataSourceImpl(gh<_i1063.NetworkClient>()));
-    gh.factory<_i1017.MovieDetailsCubit>(
-        () => _i1017.MovieDetailsCubit(gh<_i94.AddFavoriteMovie>()));
     gh.factory<_i246.GetAllMoviesRepository>(() =>
         _i579.GetAllMoviesRepositoryImpl(
           gh<_i453.MoviesDataSource>(),

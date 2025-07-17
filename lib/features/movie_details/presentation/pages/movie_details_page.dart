@@ -40,7 +40,7 @@ class MovieDetailsPage extends StatelessWidget {
               ),
               SizedBox(height: 8),
               FavoriteWidget(
-                isFav: true,
+                isFav: false,
                 onFavTap: () {
                   context.read<MovieDetailsCubit>().addToFavMovie(movie);
                 },

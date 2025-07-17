@@ -3,8 +3,32 @@ import 'package:bitmascot_assessment/features/movies/presentation/widget/movie_l
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AllMovies extends StatelessWidget {
+class AllMovies extends StatefulWidget {
   const AllMovies({super.key});
+
+  @override
+  State<AllMovies> createState() => _AllMoviesState();
+}
+
+class _AllMoviesState extends State<AllMovies> {
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels >=
+          _scrollController.position.maxScrollExtent) {
+        context.read<AllMoviesCubit>().loadMoreMovies();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +67,11 @@ class AllMovies extends StatelessWidget {
                     (value) => context.read<AllMoviesCubit>().getAllMovies(),
                   );
                 },
-                child: MovieList(movies: movies),
+                child: MovieList(
+                  movies: movies,
+                  scrollController: _scrollController,
+                  hasMore: state.hasMore,
+                ),
               );
           }
         },

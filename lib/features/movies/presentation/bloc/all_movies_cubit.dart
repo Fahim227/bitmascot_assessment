@@ -15,12 +15,47 @@ class AllMoviesCubit extends Cubit<AllMoviesState> {
 
   List<MovieEntity> _allMovies = [];
 
+  int _currentIndex = 0;
+  final int _pageSize = 10;
+  bool _hasMore = true;
+
   Future<void> getAllMovies() async {
     emit(AllMoviesLoadingState());
     final result = await _getAllMovies.call();
     result.fold((error) => emit(AllMoviesErrorState(error.message)), (data) {
       _allMovies = data;
-      emit(AllMoviesLoadedState(data));
+      _currentIndex = 0;
+      _hasMore = true;
+      _emitNextPage();
     });
+  }
+
+  void loadMoreMovies() {
+    if (_hasMore) {
+      _emitNextPage();
+    }
+  }
+
+  void _emitNextPage() {
+    final nextIndex = _currentIndex + _pageSize;
+    final isLastPage = nextIndex >= _allMovies.length;
+
+    final paginatedData = <MovieEntity>[];
+
+    if (state is AllMoviesLoadedState) {
+      paginatedData.addAll([...(state as AllMoviesLoadedState).allMovies]);
+    }
+
+    final pageItems = [
+      ..._allMovies.sublist(
+        _currentIndex,
+        isLastPage ? _allMovies.length : nextIndex,
+      ),
+    ];
+    paginatedData.addAll(pageItems);
+
+    _currentIndex += pageItems.length;
+    _hasMore = !isLastPage;
+    emit(AllMoviesLoadedState(paginatedData, _hasMore));
   }
 }
