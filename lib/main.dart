@@ -9,8 +9,10 @@ import 'package:bitmascot_assessment/features/movie_details/presentation/pages/m
 import 'package:bitmascot_assessment/features/movies/domain/entity/movie_entity.dart';
 import 'package:bitmascot_assessment/features/movies/presentation/bloc/all_movies_cubit.dart';
 import 'package:bitmascot_assessment/features/movies/presentation/pages/all_movies.dart';
+import 'package:bitmascot_assessment/features/movies/presentation/pages/all_movies_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -27,7 +29,7 @@ void main() async {
   FlavorConfig.initialize(flavor: Flavor.dev, baseUrl: apiUrl);
   await configureDependencies();
 
-  runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Bitmascot Assessment',
         theme: AppTheme.themeData,
-        initialRoute: '/',
+        initialRoute: '/all_movies_riverpod',
         routes: {
           '/': (context) => BlocProvider(
             create: (context) => sl.get<LoginCubit>(),
@@ -54,6 +56,8 @@ class MyApp extends StatelessWidget {
             create: (context) => sl.get<AllMoviesCubit>()..getAllMovies(),
             child: const AllMovies(),
           ),
+
+          '/all_movies_riverpod': (context) => AllMoviesProvider(),
           '/favorite_movies': (context) => BlocProvider(
             create: (context) =>
                 sl.get<FavoriteMovieCubit>()..getAllFavoriteMovies(),

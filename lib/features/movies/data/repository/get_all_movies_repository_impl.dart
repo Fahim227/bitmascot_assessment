@@ -18,6 +18,7 @@ class GetAllMoviesRepositoryImpl implements GetAllMoviesRepository {
   Future<Either<CustomException, List<MovieEntity>>> getAllMovies() async {
     final result = await _dataSource.getAllPosts();
     return result.fold((error) => Left(error), (data) {
+      print("GetAllMoviesRepositoryImpl === $data");
       final allMovies = _movieModelToEntityMapper.map(data);
       return Right(allMovies);
     });
